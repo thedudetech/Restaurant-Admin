@@ -1,0 +1,150 @@
+{% load static from staticfiles %}
+    <script src="{% static 'assets/js/lib/jquery.min.js' %}"></script><!-- jquery vendor -->
+    <script src="{% static 'assets/js/lib/jquery.nanoscroller.min.js' %}"></script><!-- nano scroller -->    
+    <script src="{% static 'assets/js/lib/sidebar.js' %}"></script><!-- sidebar -->
+    <script src="{% static 'assets/js/lib/bootstrap.min.js' %}"></script><!-- bootstrap -->
+    <script src="{% static 'assets/js/lib/mmc-common.js' %}"></script>
+    <script src="{% static 'assets/js/lib/mmc-chat.js' %}"></script>
+
+	<!--  Chart js -->
+	<script src="{% static 'assets/js/lib/chart-js/Chart.bundle.js' %}"></script>
+	<script src="{% static 'assets/js/lib/chart-js/chartjs-init.js' %}"></script>
+	<!-- // Chart js -->
+	
+	<!--  Datamap -->
+    <script src="{% static 'assets/js/lib/datamap/d3.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/datamap/topojson.js' %}"></script>
+    <script src="{% static 'assets/js/lib/datamap/datamaps.world.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/datamap/datamap-init.js' %}"></script>
+	<!-- // Datamap -->-->
+    <script src="{% static 'assets/js/lib/weather/jquery.simpleWeather.min.js' %}"></script>	
+    <script src="{% static 'assets/js/lib/weather/weather-init.js' %}"></script>
+    <script src="{% static 'assets/js/lib/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/owl-carousel/owl.carousel-init.js' %}"></script>
+    <script src="{% static 'assets/js/scripts.js' %}"></script><!-- scripit init-->
+
+    <!-- DATA TABLE JS -->
+    <script src="{% static 'assets/js/lib/data-table/datatables.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/data-table/dataTables.bootstrap.min.html' %}"></script>
+    <script src="{% static 'assets/js/lib/data-table/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/data-table/buttons.bootstrap.min.html' %}"></script>
+    <script src="{% static 'assets/js/lib/data-table/jszip.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/data-table/pdfmake.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/data-table/vfs_fonts.js' %}"></script>
+    <script src="{% static 'assets/js/lib/data-table/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/data-table/buttons.print.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/data-table/buttons.colVis.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/data-table/datatables-init.js' %}"></script>
+
+    <!-- Data Table JS end -->
+
+    <!-- restaurant-menu-one.html -->
+    <script src="{% static 'assets/js/lib/nestable/jquery.nestable.js' %}"></script><!-- scripit init-->
+    <script src="{% static 'assets/js/lib/nestable/nestable.init.js' %}"></script><!-- scripit init--> 
+    <script src="{% static 'assets/js/scripts.js' %}"></script><!-- scripit init-->
+    <!-- restaurant-menu-one.html end -->
+
+    <!-- Take-Away Page -->
+
+    
+  <!--  <script src="{% static 'assets/js/lib/jquery.js' %}"></script> -->
+   <script src="{% static 'assets/js/lib/jquery-1.12.4.min.js' %}"></script>
+   <!-- JS Grid Scripts Start-->
+   <!--  <script src="{% static 'assets/js/lib/jsgrid/db.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jsgrid/jsgrid.core.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jsgrid/jsgrid.load-indicator.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jsgrid/jsgrid.load-strategies.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jsgrid/jsgrid.sort-strategies.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jsgrid/jsgrid.field.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jsgrid/fields/jsgrid.field.text.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jsgrid/fields/jsgrid.field.number.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jsgrid/fields/jsgrid.field.select.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jsgrid/fields/jsgrid.field.checkbox.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jsgrid/fields/jsgrid.field.control.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jsgrid/jsgrid-init.js' %}"></script> -->
+    <!-- JS Grid Scripts End-->
+   <script type="text/javascript">
+    
+
+    $(document).ready(function(){   
+      // document.getElementById("kotid").value = ;   
+    $("#onSelectP").change(function(){
+    // alert("Getting Data");
+    var qnty = document.getElementById("qnty");
+    var amount = document.getElementById("amount");
+    var amount_hidden = document.getElementById("amount_hidden");
+    
+    qnty.value = "1"
+    var pname = $(this).val();
+    var pid = $('#brow [value="' + pname + '"]').data('value');
+    // alert(pid);
+     $.ajax({
+         url: "getdata/"+pid+"/",
+           success: function(data) {
+           amount.value = data
+           amount_hidden.value = amount.value;
+           }
+        });
+    });
+    });
+
+     $("#qnty").change(function(){
+        var amount = document.getElementById("amount");
+        var amount_hidden  = document.getElementById("amount_hidden").value;
+        var qntyno = $(this).val();    
+        document.getElementById("amount").value = amount_hidden * qntyno;
+    
+    });
+     $("#qnty").keyup(function(){
+        var amount = document.getElementById("amount");
+        var amount_hidden  = document.getElementById("amount_hidden").value;
+        var qntyno = $(this).val();    
+        document.getElementById("amount").value = amount_hidden * qntyno;
+    
+    });
+
+     function myFunction(product_id){
+        var qty = $("#onkey_"+product_id+" td:nth-child(4) .qty").val();
+        var amount = $("#hamount_"+product_id).val();
+        // document.getElementById("amount").value = amount * qntyno;
+        $("#onkey_"+product_id+" td:nth-child(5) .amount").val(qty * amount);
+     }
+     $("#qnty").on("keypress",function(){
+        var item = $("#onSelectP").val();
+        // var options = $("#onSelectP").getElementsByTagName("option");
+        // var optionHTML = options[this.selectedIndex].innerHTML;
+        // var item = $("#onSelectP").options[$("#onSelectP").selectedIndex].text;
+        var pid = $('#brow [value="' + item + '"]').data('value');
+        var note = $("#note").val();
+        var qntyno = $(this).val();
+        var amount = $("#amount").val(); 
+        var amount_hidden = $("#amount_hidden").val();
+         if (event.key === "Enter") {
+            if( !$('#order_item').hasClass('item-duplication') && $('.item-duplication').val() != item){
+                $("#order_item tbody").prepend('<tr id = "onkey_'+pid+'"><td><span class="ti-trash"></span></td><td><input type="text" class="form-control item-duplication" placeholder="Note" id="items_name" value="'+item+'"></label></td><td><input type="text" class="form-control" placeholder="Note" id="noted" value="'+note+'"></td><td><input type="number" class="form-control qty" onkeyup="myFunction('+pid+')" id="qntyd" placeholder="Quantities" value="'+qntyno+'"></td><td><input class="form-control amount" type="text" id="amountd"  value="'+amount+'" readonly=""><input class="form-control" type="hidden" id="hamount_'+pid+'"  value="'+amount_hidden+'"></td></tr>');
+                    
+            }       
+            else{
+                alert("You have already placed this order you can update from there.");
+            }
+        }
+    });
+
+    $(".qntyd").change(function(){
+        alert("esr");
+        // var amount = document.getElementById("amount");
+        // var amount_hidden  = document.getElementById("amount_hidden").value;
+        // var qntyno = $(this).val();    
+        // document.getElementById("amount").value = amount_hidden * qntyno;
+    
+    });
+     $(".qntyd").keyup(function(){
+        alert("serty");
+        // var amount = document.getElementById("amount");
+        // var amount_hidden  = document.getElementById("amount_hidden").value;
+        // var qntyno = $(this).val();    
+        // document.getElementById("amount").value = amount_hidden * qntyno;
+    
+    });
+    </script>
+    

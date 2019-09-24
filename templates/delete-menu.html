@@ -1,0 +1,168 @@
+{% extends 'index.html' %}
+
+
+
+<!-- Mirrored from zebratheme.com/html/fooadmin/restaurant-upload-menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 00:19:32 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block title %} Delete Menu | Foodadmin {% endblock %}
+	
+   {% include 'style.html'%}
+</head>
+
+<body>
+
+    {% include 'nav.html'%}
+    {% block content%}
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 p-0">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Dashboard 1</h1>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+                    <div class="col-lg-4 p-0">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li class="active">Menu Upload</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+                </div><!-- /# row -->
+            
+              <div class="card-header">
+                <div class="card-toggle-body">
+                     <div class="button-list">
+                            <div class="btn-group btn-group-justified">
+                                    <a href="{% url 'update_menu' %}" class="btn btn-primary">Update Product</a>
+                                    <a href="{% url 'view_menu' %}" class="btn btn-primary">View Menu</a>
+                                    <a href="{% url 'delete_menu' %}" class="btn btn-primary">Delete Product</a>
+                            </div>
+                    </div>
+                </div>
+            </div>                 
+
+                <!-- <h4><a href=""><span class="ti-view-list p-0"></span> View Menu  </a></h4> -->
+
+                <div class="main-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card alert">
+                                <div class="card-header">
+                                    <h4>Menu Upload</h4>
+                                    <div class="card-header-right-icon">
+                                        <ul>
+                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
+                                            <li class="doc-link"><a href="#"><i class="ti-link"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-body">
+                                    <div class="menu-upload-form">
+                                        <form method="post" class="form-horizontal">
+                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">Product ID</label>
+                                            <div class="col-sm-4">
+                                                <div class="input-group input-group-default">
+                                                    <input type="text" name="pid" placeholder="Product Id" class="form-control">
+                                                    <span class="input-group-btn"><button class="btn btn-primary" type="submit" name="btn_search"><i class="ti-search"></i></button></span>
+                                                    <div class="col-sm-offset-2 col-sm-10">
+                                                        <button type="submit" class="btn btn-lg btn-primary" name="btn_delete">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                              
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Upload Product</label>
+                                            <div class="col-sm-10">
+                                                <div class="form-control file-input dark-browse-input-box">
+                                                    <label for="inputFile-2">
+                                                                <span class="btn btn-danger dark-input-button">
+                                                                    <input type="file" id="inputFile-2" onchange="this.parentNode.parentNode.nextElementSibling.value = this.value" >
+                                                                    <i class="fa fa-file-archive-o"></i>
+                                                                </span>
+                                                    </label>
+                                                    <input class="file-name input-flat" type="text" readonly="readonly" placeholder="Browse Files" name="product_photo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group"> <!-- Selection -->
+                                            <label class="col-sm-2 control-label">Product Type</label>
+                                            <div class="col-sm-10">
+                                            <select name="product_type" class="form-control">
+                                                    <option value="">{{product_type}}</option>
+                                                    <option value="Starter">Starter</option>
+                                                    <option value="Main Course">Main Course</option>
+                                                    <option value="Dessert">Dessert</option>
+                                            </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Product Regions</label>
+                                            <div class="col-sm-10">
+                                            <select name="food_region" class="form-control">
+                                                    <option value="">{{food_region}}</option>
+                                                    <option value="Panjabi">Panjabi</option>
+                                                    <option value="Chinese">Chinese</option>
+                                                    <option value="South Indian">South Indian</option>
+                                                    <option value="Kathiyawadi">Kathiyawadi</option>
+                                            </select>
+                                            </div>
+                                        </div><!-- Selection End -->
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Product Name</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" placeholder="Rishit Nimavat" name="product_name"  value="{{product_name}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Product Details</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" rows="3" placeholder="Type your menu Details" name="product_details">{{product_details}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Product Quantity</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" placeholder="grams, nos. lts etc" name="product_quantity" value="{{product_quantity}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Product Price</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" placeholder="$00.00" name="product_price" value="{{product_price}}">
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div><!-- /# card -->
+                        </div><!-- /# column -->
+                    </div><!-- /# row -->
+                </div><!-- /# main content -->
+            </div><!-- /# container-fluid -->
+        </div><!-- /# main -->
+    </div><!-- /# content wrap -->
+
+{% endblock %}
+{%include 'script.html'%}
+</body>
+
+
+<!-- Mirrored from zebratheme.com/html/fooadmin/restaurant-upload-menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 00:19:32 GMT -->
+</html>

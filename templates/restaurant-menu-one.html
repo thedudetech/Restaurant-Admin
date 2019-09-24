@@ -1,0 +1,92 @@
+{% extends 'index.html' %}
+
+
+
+<!-- Mirrored from zebratheme.com/html/fooadmin/restaurant-upload-menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 00:19:32 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block title %} Menus | Foodadmin {% endblock %}
+    
+   {% include 'style.html'%}
+</head>
+
+<body>
+    {% include 'nav.html'%}
+    {% block content%}
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 p-0">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Products-1</h1>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+                    <div class="col-lg-4 p-0">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">Components </a></li>
+                                    <li class="active">Products-1</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+                </div><!-- /# row -->
+                
+
+
+                <div class="main-content">
+                    {% for i in product_data %}
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="card alert">
+                                <div class="products_1 text-center">
+                                    <div class="pr_img_price">
+                                        <div class="product_img">
+                                            <img src="assets/images/product_1/download.jpg" alt=""/>
+                                        </div>
+                                        <div class="product_price">
+                                            <div class="prd_prc_box">
+                                                <div class="product_price">
+                                                    <p>{{i.product_price}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product_details">
+                                        <div class="product_name">
+                                            <h4>{{i.product_name}}</h4>
+                                        </div>
+                                        <div class="product_des">
+                                            <p>{{i.product_details}}</p>
+                                        </div>
+                                        <div class="prdt_add_to_cart">
+                                            <button type="button" class="btn btn-primary btn-rounded  m-l-5" name="{{i.id}}">add to cart</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+							</div><!-- /# card -->
+						</div><!-- /# column -->
+                        {% endfor %}
+                        
+                        
+            </div><!-- /# container-fluid -->
+        </div><!-- /# main -->
+    </div><!-- /# content wrap -->
+
+{% endblock %}   
+{%include 'script.html'%}
+</body>
+
+
+<!-- Mirrored from zebratheme.com/html/fooadmin/restaurant-menu-one.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 00:19:22 GMT -->
+</html>

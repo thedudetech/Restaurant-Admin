@@ -1,0 +1,104 @@
+{% extends 'index.html' %}
+{% load table_tags %}
+
+
+
+<!-- Mirrored from zebratheme.com/html/fooadmin/restaurant-upload-menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 00:19:32 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block title %} View Menu | Foodadmin {% endblock %}
+	
+   {% include 'style.html'%}
+</head>
+
+<body>
+
+    {% include 'nav.html'%}
+    {% block content%}
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 p-0">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Dashboard 1</h1>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+                    <div class="col-lg-4 p-0">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li class="active">Menu Upload</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+                </div><!-- /# row -->
+                <div class="card-header">
+                    <div class="card-toggle-body">
+                        <div class="button-list">
+                            <div class="btn-group btn-group-justified">
+                                    <a href="{% url 'update_menu' %}" class="btn btn-primary">Update Product</a>
+                                    <a href="{% url 'view_menu' %}" class="btn btn-primary">View Menu</a>
+                                    <a href="{% url 'delete_menu' %}" class="btn btn-primary">Delete Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                                 
+
+
+
+        <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                 <div class="main-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card alert">
+                                <div class="card-header">
+                                    <h4> Live Menus </h4>
+                                    <div class="card-header-right-icon">
+                                        <ul>
+                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
+                                            <li class="doc-link"><a href="#"><i class="ti-link"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bootstrap-data-table-panel">
+                                    <!--<table id="bootstrap-data-table" class="table table-striped table-bordered"> -->
+                                        {% render_table product %}
+                                        
+                                </div>
+                            </div><!-- /# card -->
+                        </div><!-- /# column -->
+                    </div><!-- /# row -->
+                </div><!-- /# main content -->
+            </div><!-- /# container-fluid -->
+        </div><!-- /# main -->
+    </div><!-- /# content wrap -->
+
+
+{% endblock %}
+{%include 'script.html'%}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#bootstrap-data-table-export').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+    </script>
+</body>
+
+
+<!-- Mirrored from zebratheme.com/html/fooadmin/restaurant-upload-menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 00:19:32 GMT -->
+</html>

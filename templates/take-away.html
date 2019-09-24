@@ -1,0 +1,175 @@
+{% extends 'index.html' %}
+
+
+
+<!-- Mirrored from zebratheme.com/html/fooadmin/restaurant-upload-menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 00:19:32 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block title %} Menus | Foodadmin {% endblock %}
+    
+   {% include 'style.html'%}
+</head>
+
+<body>
+    {% include 'nav.html'%}
+    {% block content%}
+
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 p-0">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Take Away</h1>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+                    <div class="col-lg-4 p-0">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Restuarant</a></li>
+                                    <li><a href="#"> Order </a></li>
+                                    <li class="active"> Take Away</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+                </div><!-- /# row -->
+                 
+                <!-- For Name and Number -->
+                <div class="col-lg-6">
+                            <div class="card alert">
+                                <div class="card-header">
+                                    <h4>Customer Details</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="horizontal-form">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Name</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" placeholder="Name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Mobile No.</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" class="form-control" placeholder="Mobile No">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /# column -->
+                    </div><!-- /# row -->
+                    <!-- For Name and Number End -->
+                    
+                     <div class="col-lg-12">
+                            <div class="card alert">
+                                <div class="card-header">
+                                    <h4>Order Details</h4>
+                                    <label id="kotid" hidden></label>
+                                </div>
+                                <table class="table table-responsive table-bordered">
+                                 <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th> 
+                                            <div class="col-sm-10">                                            
+                                                <input list="brow" id="onSelectP">
+                                                <datalist id="brow">
+                                                    {% for i in product_data %}
+                                                        <option data-value="{{i.id}}"  value="{{i.product_name}}">
+                                                    {% endfor %}
+                                                </datalist> 
+                                            </div>
+                                        </th>
+                                        <th><input type="text" class="form-control" placeholder="Note" id="note"></th>
+                                        <th><input type="number" class="form-control" id="qnty" placeholder="Quantities"></th>
+                                        <th><input class="form-control" type="text" id="amount" value="{{i.product_price}}" readonly="">
+                                            <label id="amount_hidden" hidden></label>
+                                        </th>
+                                    </tr>
+                                    
+                                </thead>
+                            </table>
+                            <table class="table table-responsive table-bordered" id="order_item">
+                                <thead>
+                                     <tr>
+                                        <th>#</th>
+                                        <th>Items</th>
+                                        <th>Note</th>
+                                        <th>Quantities</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   <!--  <tr>
+                                        <td><span class="ti-cut"></span></td>
+                                        <td><input type="text" class="form-control" placeholder="Note" id="items_name" value="{{i.product_name}}"></label></td>
+                                        <td><input type="text" class="form-control" placeholder="Note" id="noted"></td>
+                                        <td><input type="number" class="form-control" id="qntyd" placeholder="Quantities"></td>
+                                        <td><input class="form-control" type="text" id="amountd" value="{{i.product_price}}" readonly=""></td>
+                                    </tr> -->
+                                    <tr>
+                                        <td colspan="4" style="text-align: right;">Container Charge:</td>
+                                        <td><input type="number" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="text-align: right;">Delivery Charge</td>
+                                        <td><input type="number" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="text-align: right;">Service Charge</td>
+                                        <td><input type="number" class="form-control"></td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#</td>
+                                        <td><input type="number" class="form-control" id="qntyd" placeholder="Percentage"></td>
+                                        <td><input type="number" class="form-control" placeholder="Fix Amount"></td>
+                                        <td style="text-align: right;">Discount</td>
+                                        <td><input class="form-control" type="text" id="amountd" value="{{i.product_price}}" readonly=""></td>
+                                    <tr>
+                                        <td colspan="4" style="text-align: right;">Round Off</td>
+                                        <td><input type="number" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="text-align: right;">Grand Total</td>
+                                        <td><input class="form-control" type="text" id="amountd" value="{{i.product_price}}" readonly=""></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-responsive table-bordered">
+                                <tr>
+                                        <td>Actions</td>
+                                        <td><button type="button" class="btn btn-success m-b-10 m-l-5">Save & Print</button></td>
+                                        <td><button type="button" class="btn btn-info m-b-10 m-l-5">Save & Ebill</button></td>
+                                        <td><button type="button" class="btn btn-default m-b-10">Kot</button></td>
+                                        <td><button type="button" class="btn btn-default m-b-10">Kot & Print</button></td>
+                                    </tr>
+                            </table>
+
+                            </div>    
+                        </div><!-- /# column -->
+                       
+                
+                
+                    
+
+            </div><!-- /# container-fluid -->
+        </div><!-- /# main -->
+    </div><!-- /# content wrap -->
+
+{% endblock %}   
+{%include 'script.html'%}
+</body>
+
+
+<!-- Mirrored from zebratheme.com/html/fooadmin/restaurant-menu-three.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Aug 2019 00:19:23 GMT -->
+</html>
